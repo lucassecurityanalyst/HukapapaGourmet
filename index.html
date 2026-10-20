@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hukapapa Gourmet — Congelado com alma maori</title>
+  <meta name="description" content="Hukapapa Gourmet: geladinhos de Ninho com Nutella feitos com leite pasteurizado, creme de avelã de alta qualidade e muito amor. Sabor congelado, alma maori.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a1628;
+      --bg-soft: #0f1f35;
+      --gold: #c9a227;
+      --gold-light: #e8d48b;
+      --cream: #f5f0e6;
+      --text: #e8e4d9;
+      --muted: #a8a295;
+      --accent: #1a3a4a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Decorative koru-inspired pattern */
+    .pattern-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(201, 162, 39, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(201, 162, 39, 0.05) 0%, transparent 35%);
+      pointer-events: none;
+    }
+
+    /* Header / Nav */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(10, 22, 40, 0.95), transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      margin-left: 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 6rem 1.5rem 4rem;
+      text-align: center;
+      background: 
+        linear-gradient(180deg, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.85) 70%, var(--bg) 100%),
+        url('assets/T6mO2.jpg') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(201, 162, 39, 0.4);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      display: block;
+      font-size: 0.55em;
+      font-weight: 500;
+      margin-top: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.95rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 162, 39, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      margin-left: 0.8rem;
+    }
+
+    .btn-outline:hover {
+      background: rgba(201, 162, 39, 0.12);
+      color: var(--gold-light);
+    }
+
+    /* Sections common */
+    section {
+      padding: 5rem 1.5rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-line {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Sobre */
+    .sobre {
+      background: var(--bg-soft);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .sobre-text p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .sobre-text strong {
+      color: var(--gold-light);
+    }
+
+    .sobre-img {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .sobre-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Sabores */
+    .sabores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .sabor-card {
+      background: var(--bg-soft);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 162, 39, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .sabor-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    }
+
+    .sabor-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .sabor-info {
+      padding: 1.5rem;
+    }
+
+    .sabor-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+
+    .sabor-info .peso {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .sabor-info .preco {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* Diferencial */
+    .diferencial {
+      background: linear-gradient(135deg, #0f1f35 0%, #0a1628 100%);
+      text-align: center;
+    }
+
+    .diferencial-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .diff-item {
+      max-width: 260px;
+      padding: 1.5rem;
+    }
+
+    .diff-item .icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .diff-item h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .diff-item p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Pedido */
+    .pedido {
+      background: var(--bg-soft);
+      text-align: center;
+    }
+
+    .pedido-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: rgba(201, 162, 39, 0.06);
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+    }
+
+    .pedido-box p {
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .pedido-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #060e18;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(201, 162, 39, 0.12);
+    }
+
+    footer .logo {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .contato {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contato a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .contato a:hover {
+      text-decoration: underline;
+    }
+
+    .copy {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #6a6558;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.2rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .hero {
+        padding: 5.5rem 1.2rem 3rem;
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 0.6rem;
+      }
+
+      .pedido-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">HUKAPAPA</a>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#sabores">Sabores</a>
+      <a href="#pedido">Pedir</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="pattern-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Geladinhos Gourmet</div>
+      <h1>
+        Tá quente aí? Esquenta não.
+        <span>Refresca com Hukapapa — Ninho com Nutella geladinho.</span>
+      </h1>
+      <p class="hero-sub">Sabor intenso, textura cremosa e o frescor que você precisa. Feito com leite pasteurizado e o melhor creme de avelã.</p>
+      <div>
+        <a href="https://wa.me/5562993333043?text=Olá! Quero pedir Hukapapa 🍦" class="btn" target="_blank" rel="noopener">
+          Pedir no WhatsApp
+        </a>
+        <a href="#sabores" class="btn btn-outline">Ver sabores</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <h2 class="section-title">Nossa História</h2>
+      <div class="section-line"></div>
+      <div class="sobre-grid">
+        <div class="sobre-text">
+          <p>
+            <strong>Hukapapa Gourmet</strong> nasceu com a ideia de uma sobremesa saborosa a um custo acessível.
+          </p>
+          <p>
+            <strong>“Hukapapa”</strong> é uma palavra de origem maori que pode significar <em>“congelado”</em> ou <em>“gelo”</em>, criando assim uma associação direta às nossas sobremesas geladas.
+          </p>
+          <p>
+            Mais do que um geladinho: uma experiência feita com carinho, qualidade e a alma da cultura maori.
+          </p>
+        </div>
+        <div class="sobre-img">
+          <img src="assets/LLm8G.jpg" alt="Hukapapa Geladinhos Gourmet">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SABORES -->
+  <section id="sabores">
+    <div class="container">
+      <h2 class="section-title">Nossos Sabores</h2>
+      <div class="section-line"></div>
+      <div class="sabores-grid">
+        <div class="sabor-card">
+          <img src="assets/produto.jpg" alt="Ninho com Nutella 120g">
+          <div class="sabor-info">
+            <h3>Ninho com Nutella</h3>
+            <p class="peso">120g — o tamanho generoso</p>
+            <p class="preco">R$ 6,00</p>
+          </div>
+        </div>
+        <div class="sabor-card">
+          <img src="assets/produto2.jpg" alt="Ninho com Nutella 90g">
+          <div class="sabor-info">
+            <h3>Ninho com Nutella</h3>
+            <p class="peso">90g — perfeito para qualquer momento</p>
+            <p class="preco">R$ 5,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section class="diferencial">
+    <div class="container">
+      <h2 class="section-title">Por que Hukapapa?</h2>
+      <div class="section-line"></div>
+      <div class="diferencial-list">
+        <div class="diff-item">
+          <div class="icon">🍫</div>
+          <h4>Creme de Avelã Premium</h4>
+          <p>Usamos a melhor qualidade de creme de avelã do mercado.</p>
+        </div>
+        <div class="diff-item">
+          <div class="icon">🥛</div>
+          <h4>Leite Pasteurizado Integral</h4>
+          <p>Base cremosa e natural, sem atalhos.</p>
+        </div>
+        <div class="diff-item">
+          <div class="icon">❤️</div>
+          <h4>Muito Amor</h4>
+          <p>Feito com carinho em cada unidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEDIDO -->
+  <section class="pedido" id="pedido">
+    <div class="container">
+      <h2 class="section-title">Como Pedir</h2>
+      <div class="section-line"></div>
+      <div class="pedido-box">
+        <p>Escolha o tamanho, chame no WhatsApp e receba seu Hukapapa geladinho. Rápido, simples e com aquele toque de alma maori.</p>
+        <div class="pedido-actions">
+          <a href="https://wa.me/5562993333043?text=Olá! Quero pedir Hukapapa 🍦" class="btn" target="_blank" rel="noopener">
+            WhatsApp
+          </a>
+          <a href="https://forms.gle/" class="btn btn-outline" target="_blank" rel="noopener">
+            Formulário (em breve)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="logo">HUKAPAPA</a>
+    <p class="contato">
+      <a href="https://wa.me/5562993333043" target="_blank">+55 62 99333-3043</a>
+    </p>
+    <p class="contato">
+      <a href="mailto:hukapapagourmet@gmail.com">hukapapagourmet@gmail.com</a>
+    </p>
+    <p class="copy">Hukapapa Gourmet © Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
